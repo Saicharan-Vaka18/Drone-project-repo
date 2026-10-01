@@ -1,0 +1,1 @@
+Place your trained YOLO .pt model in this folder and rename it to best.pt, or set YOLO_MODEL_PATH in .env.

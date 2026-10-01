@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#DC2626"><title>AeroTrash Detect — Drone Waste Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="../02_CSS/style.css">
+</head>
+<body>
+<div id="app">
+  <section id="authScreen" class="auth-screen">
+    <div class="auth-hero"><div class="brand large"><span class="brand-icon">⌁</span>AEROTRASH DETECT</div><div class="hero-copy"><p class="kicker">AERIAL WASTE INTELLIGENCE</p><h1>See waste.<br><span>Locate it.</span><br>Act faster.</h1><p>Professional drone monitoring for detecting, locating and reporting waste in real time.</p></div><div class="hero-footer">● Secure operator workspace</div></div>
+    <div class="auth-panel"><div class="auth-mobile-brand brand"><span class="brand-icon">⌁</span>AEROTRASH DETECT</div><div class="auth-box"><p class="kicker" id="authKicker">OPERATOR ACCESS</p><h2 id="authTitle">Welcome back</h2><p class="muted" id="authSubtitle">Sign in to your command center.</p><div id="authError" class="alert error hidden"></div><form id="authForm"><label>Email<input id="authEmail" type="email" placeholder="operator@example.com" required></label><label>Password<input id="authPassword" type="password" minlength="6" placeholder="••••••••" required></label><button class="btn primary full" id="authSubmit">Sign in <span>→</span></button></form><button class="text-btn" id="authToggle">Create a new operator account</button></div></div>
+  </section>
+  <section id="appScreen" class="hidden">
+    <aside class="sidebar" id="sidebar"><div class="brand"><span class="brand-icon">⌁</span>AEROTRASH DETECT</div><p class="nav-title">COMMAND CENTER</p><nav id="nav"><button class="nav-item active" data-page="dashboard"><span>▦</span>Dashboard</button><button class="nav-item" data-page="monitor"><span>◉</span>Live Monitor</button><button class="nav-item" data-page="fleet"><span>✦</span>Drone Fleet</button><button class="nav-item" data-page="detections"><span>⌖</span>Detections</button><button class="nav-item" data-page="map"><span>●</span>Detection Map</button><button class="nav-item" data-page="reports"><span>▤</span>Reports</button><button class="nav-item" data-page="settings"><span>⚙</span>Settings</button></nav><div class="sidebar-bottom"><div class="secure"><b>✓</b><div><strong>System secure</strong><small>Local operator session</small></div></div><button id="logoutBtn" class="logout">↪ <span>Sign out</span></button></div></aside>
+    <main class="main"><header class="topbar"><button id="menuBtn" class="mobile-menu">☰</button><div class="crumb"><span>AeroTrash Detect</span><b>/</b><strong id="pageTitle">Dashboard</strong></div><div class="top-actions"><button class="icon-btn" id="refreshBtn" title="Refresh">↻</button><button class="icon-btn" id="alertBtn" title="Alerts">♢<i id="alertDot"></i></button><div class="user-pill"><span class="avatar" id="avatar">SC</span><span id="userEmail">operator</span></div></div></header><div id="page" class="page"></div></main>
+  </section>
+</div>
+<div id="toast" class="toast"></div>
+<div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="../03_JS/script.js"></script>
+</body></html>

@@ -1,0 +1,75 @@
+AEROTRASH DETECT - YOLO MODEL CONNECTION
+========================================
+
+YOUR TRAINED MODEL
+------------------
+You said your model is:
+    my_model.pt
+
+and is located in:
+    C:\Users\chara\OneDrive\Desktop\training_yolo_model\second_try\my_model\my_model.pt
+
+I already placed that exact path in:
+    backend\.env
+
+So if that file exists at that exact location, you do NOT need to move the model.
+
+OPTIONAL / RECOMMENDED LOCAL COPY
+---------------------------------
+You can instead copy my_model.pt into:
+    backend\models\my_model.pt
+
+Then change backend\.env to:
+    YOLO_MODEL_PATH=./models/my_model.pt
+
+RUN THE BACKEND
+---------------
+1. Open VS Code.
+2. Open the AeroTrash-Detect folder.
+3. Open a terminal.
+4. Run:
+
+   cd backend
+   python -m venv .venv
+   .venv\Scripts\activate
+   pip install -r requirements.txt
+   python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+
+5. Open this in your browser:
+   http://127.0.0.1:8000/api/model/status
+
+You should see:
+   "name": "my_model.pt"
+   "exists": true
+
+If exists is false, the Windows path in backend\.env does not match the real file location.
+
+TEST YOUR MODEL WITHOUT A DRONE
+--------------------------------
+The backend includes:
+   POST /api/model/test
+
+You can use Swagger UI:
+   http://127.0.0.1:8000/docs
+
+Create/login to an account, authorize with the token, then upload a test image to /api/model/test.
+The response will show the classes detected by YOUR my_model.pt model.
+
+LIVE DRONE DETECTION
+--------------------
+For a real drone camera, register a drone with a camera source such as:
+   0                         webcam
+   C:\path\video.mp4        video file
+   http://...                HTTP camera
+   rtsp://...                RTSP camera
+
+The /api/drones/{id}/stream endpoint runs YOLO on every incoming frame and overlays the detections.
+
+IMPORTANT TELEMETRY NOTE
+------------------------
+Battery, GPS, altitude and speed must come from the drone/onboard computer.
+The camera image alone does not reliably provide those values.
+
+NO FAKE YOLO MODEL
+------------------
+The backend does not create fake detections. All detection events saved by the live stream come from inference with your my_model.pt file.
